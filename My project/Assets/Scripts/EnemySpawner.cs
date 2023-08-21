@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Vector3 _enemyTargetPosition;
 
     [SerializeField] private float _spawnTime;
-    private float _currentTime;
+    private float _timer;
 
     private Vector3[] _spawnPoints;
 
@@ -18,15 +18,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (_currentTime > 0)
-        {
-            _currentTime -= Time.deltaTime;
-        }
-        else
+        if (_timer <= 0)
         {
             Spawn();
-            _currentTime = _spawnTime;
+            _timer = _spawnTime;
         }
+
+        _timer -= Time.deltaTime;
     }
 
     private void Spawn()
