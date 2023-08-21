@@ -19,13 +19,14 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator Spawning()
     {
         bool isOn = true;
+        WaitForSeconds wait = new WaitForSeconds(_spawnTime);
 
         while (isOn)
         {
             Enemy enemy = Instantiate(_enemyPrefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)], Quaternion.identity);
             enemy.Init(_enemyTargetPosition);
 
-            yield return new WaitForSeconds(_spawnTime);
+            yield return wait;
         }
     }
 }
